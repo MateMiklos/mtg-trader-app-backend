@@ -47,15 +47,39 @@ public class MtgTraderApplication {
                     .status(Status.ACTIVE)
                     .build();
 
+            Card card3 = Card.builder()
+                    .name("Umezawa's Jitte")
+                    .price(5000L)
+                    .condition(Condition.NEAR_MINT)
+                    .status(Status.ACTIVE)
+                    .build();
+
+            Card card4 = Card.builder()
+                    .name("Doubling Season")
+                    .price(12000L)
+                    .condition(Condition.LIGHTLY_PLAYED)
+                    .status(Status.ACTIVE)
+                    .build();
+
+            Card card5 = Card.builder()
+                    .name("Umezawa's Jitte")
+                    .price(4000L)
+                    .condition(Condition.LIGHTLY_PLAYED)
+                    .status(Status.ACTIVE)
+                    .build();
+
             User mm = User.builder()
                     .name("Miklós Máté")
                     .email("miklos.mate.91@gmail.com")
-                    .cards(Arrays.asList(card1, card2))
+                    .cards(Arrays.asList(card1, card2, card3, card4, card5))
                     .build();
 
             metaGame.setCard(card1);
             card1.setUser(mm);
             card2.setUser(mm);
+            card3.setUser(mm);
+            card4.setUser(mm);
+            card5.setUser(mm);
 
             userRepository.save(mm);
 
