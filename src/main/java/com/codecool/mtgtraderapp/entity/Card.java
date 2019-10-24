@@ -31,6 +31,12 @@ public class Card {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Enumerated(EnumType.STRING)
+    private Expansion expansion;
+
+    @Enumerated(EnumType.STRING)
+    private List<Colour> colours;
+
     @ManyToOne
     @JsonBackReference
     @EqualsAndHashCode.Exclude
@@ -40,8 +46,6 @@ public class Card {
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private List<Location> location = new ArrayList<>();
-
-    private String expansion;
 
     private boolean isFoil;
 

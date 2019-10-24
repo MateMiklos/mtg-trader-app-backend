@@ -28,4 +28,9 @@ public class User {
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private List<Card> cards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @EqualsAndHashCode.Exclude
+    private List<Card> orderedCards = new ArrayList<>();
 }
