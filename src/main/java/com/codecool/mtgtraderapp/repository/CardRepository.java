@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CardRepository extends JpaRepository<Card, Long> {
 
-    @Query("select c from Card c where c.name like %:name%")
+    @Query("select c from Card c where lower(c.name) like lower(concat('%', :name, '%'))")
     List<Card> getCardsByName(@Param("name") String name);
 
     List<Card> findAllByNameEquals(String name);
