@@ -18,9 +18,6 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     @Query("select c from Card c where c.expansion = :expansion")
     List<Card> getCardsByExpansion(@Param("expansion") Expansion expansion);
 
-    @Query("select c from Card c where c.colours having :colour")
-    List<Card> getCardsByExpansion(@Param("colour") Colour colour);
-
     List<Card> findAllByNameEquals(String name);
 
 }

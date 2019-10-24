@@ -34,9 +34,6 @@ public class Card {
     @Enumerated(EnumType.STRING)
     private Expansion expansion;
 
-    @Enumerated(EnumType.STRING)
-    private List<Colour> colours;
-
     @ManyToOne
     @JsonBackReference
     @EqualsAndHashCode.Exclude
