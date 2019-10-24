@@ -39,12 +39,21 @@ public class Card {
     @EqualsAndHashCode.Exclude
     private User user;
 
+    @ManyToOne
+    @JsonBackReference
+    @EqualsAndHashCode.Exclude
+    private User customerUser;
+
     @OneToMany(mappedBy = "card", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private List<Location> location = new ArrayList<>();
 
     private boolean isFoil;
+
+    public Long getUserId() {
+        return this.user.getId();
+    }
 
     public String getUserName() {
         return this.user.getName();

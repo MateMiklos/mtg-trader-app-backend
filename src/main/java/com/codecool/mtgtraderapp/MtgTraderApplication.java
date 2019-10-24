@@ -68,10 +68,24 @@ public class MtgTraderApplication {
                     .status(Status.ACTIVE)
                     .build();
 
+            Card card6 = Card.builder()
+                    .name("Counterspell")
+                    .price(200L)
+                    .condition(Condition.NEAR_MINT)
+                    .status(Status.ACTIVE)
+                    .build();
+
+            Card card7 = Card.builder()
+                    .name("Counterspell")
+                    .price(50L)
+                    .condition(Condition.MODERATELY_PLAYED)
+                    .status(Status.ACTIVE)
+                    .build();
+
             User mm = User.builder()
                     .name("Miklós Máté")
                     .email("miklos.mate.91@gmail.com")
-                    .cards(Arrays.asList(card1, card2, card3, card4, card5))
+                    .cards(Arrays.asList(card1, card2, card3, card4, card5, card6, card7))
                     .build();
 
             metaGame.setCard(card1);
@@ -80,6 +94,8 @@ public class MtgTraderApplication {
             card3.setUser(mm);
             card4.setUser(mm);
             card5.setUser(mm);
+            card6.setUser(mm);
+            card7.setUser(mm);
 
             userRepository.save(mm);
 
