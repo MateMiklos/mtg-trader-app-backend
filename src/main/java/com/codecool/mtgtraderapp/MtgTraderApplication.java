@@ -82,7 +82,7 @@ public class MtgTraderApplication {
                     .status(Status.ACTIVE)
                     .build();
 
-            User mm = User.builder()
+            AppUser mm = AppUser.builder()
                     .name("Miklós Máté")
                     .email("miklos.mate.91@gmail.com")
                     .cards(Arrays.asList(card1, card2, card3, card4, card5, card6, card7))

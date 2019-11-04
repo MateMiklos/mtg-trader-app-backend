@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,26 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Builder
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private String email;
 
+    @NotEmpty
+    private String password;
+
     private String phoneNumber;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JsonManagedReference

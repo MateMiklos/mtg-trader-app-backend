@@ -37,12 +37,12 @@ public class Card {
     @ManyToOne
     @JsonBackReference
     @EqualsAndHashCode.Exclude
-    private User user;
+    private AppUser user;
 
     @ManyToOne
     @JsonBackReference
     @EqualsAndHashCode.Exclude
-    private User customerUser;
+    private AppUser customerUser;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JsonManagedReference

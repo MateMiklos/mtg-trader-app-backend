@@ -1,18 +1,22 @@
 package com.codecool.mtgtraderapp.repository;
 
-import com.codecool.mtgtraderapp.entity.Card;
-import com.codecool.mtgtraderapp.entity.User;
+import com.codecool.mtgtraderapp.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<AppUser, Long> {
 
 //    @Query("select distinct u.orderedCards from User u where(c.userId) = :userId")
 //    List<Card> getCardsByUserId(@Param("userId") Long userId);
 
-    @Query("select u from User u where u.id = :userId")
-    User getUserById(@Param("userId") Long userId);
+    @Query("select u from AppUser u where u.id = :userId")
+    AppUser getUserById(@Param("userId") Long userId);
+
+    @Query("select u from AppUser u where u.name = :userName")
+    AppUser getUserByName(@Param("userName") String userName);
+
+    Optional<AppUser> findByName(String userName);
 }

@@ -1,7 +1,7 @@
 package com.codecool.mtgtraderapp.service;
 
 import com.codecool.mtgtraderapp.entity.Card;
-import com.codecool.mtgtraderapp.entity.User;
+import com.codecool.mtgtraderapp.entity.AppUser;
 import com.codecool.mtgtraderapp.repository.CardRepository;
 import com.codecool.mtgtraderapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class CardService {
     private CardRepository cardRepository;
 
     public void saveOrderedCardsToUser(Long userId, Long cardId) {
-        User user = userRepository.getUserById(userId);
+        AppUser user = userRepository.getUserById(userId);
         Card card = cardRepository.getCardById(cardId);
 
         user.getOrderedCards().add(card);
@@ -29,7 +29,7 @@ public class CardService {
     }
 
     public List<Card> getOrderedCardsByUserId(Long userId) {
-        User user = userRepository.getUserById(userId);
+        AppUser user = userRepository.getUserById(userId);
         List<Card> orderedCards = user.getOrderedCards();
         return orderedCards;
     }
