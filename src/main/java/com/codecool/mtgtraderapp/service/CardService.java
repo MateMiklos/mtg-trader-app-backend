@@ -24,6 +24,8 @@ public class CardService {
 
         user.getOrderedCards().add(card);
         card.setCustomerUser(user);
+
+        userRepository.save(user);
     }
 
     public List<Card> getOrderedCardsByUserId(Long userId) {

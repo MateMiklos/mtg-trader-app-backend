@@ -38,7 +38,7 @@ public class CardController {
 
 //    GET CARDS BY ANY TYPE OF SEARCH INPUT
 //
-//    @GetMapping("/{search}")
+//    @GetMapping("/search/{search}")
 //    public List<Card> getCardsBySearch(@PathVariable("search") String search) {
 //        List<Card> cardsBySearch = cardRepository.getCardsBySearch(search);
 //        return cardsBySearch;
@@ -49,7 +49,7 @@ public class CardController {
         return cardService.getOrderedCardsByUserId(userId);
     }
 
-    @PostMapping("/{userId}/{cardId}")
+    @PostMapping("/save/{userId}/{cardId}")
     public void saveOrderedCardToUser(@PathVariable("userId") Long userId, @PathVariable("cardId") Long cardId) {
         cardService.saveOrderedCardsToUser(userId, cardId);
     }
