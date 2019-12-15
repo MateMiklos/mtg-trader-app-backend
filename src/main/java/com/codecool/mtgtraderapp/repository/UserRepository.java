@@ -9,9 +9,6 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<AppUser, Long> {
 
-//    @Query("select distinct u.orderedCards from User u where(c.userId) = :userId")
-//    List<Card> getCardsByUserId(@Param("userId") Long userId);
-
     @Query("select u from AppUser u where u.id = :userId")
     AppUser getUserById(@Param("userId") Long userId);
 

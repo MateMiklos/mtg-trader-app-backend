@@ -25,7 +25,6 @@ public class AppUser {
     @NotEmpty
     private String email;
 
-    @NotEmpty
     private String password;
 
     private String phoneNumber;
@@ -39,7 +38,7 @@ public class AppUser {
     @EqualsAndHashCode.Exclude
     private List<Card> cards = new ArrayList<>();
 
-    @OneToMany(mappedBy = "customerUser", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "customerUsers", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private List<Card> orderedCards = new ArrayList<>();

@@ -7,6 +7,7 @@ import com.codecool.mtgtraderapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -23,7 +24,7 @@ public class CardService {
         Card card = cardRepository.getCardById(cardId);
 
         user.getOrderedCards().add(card);
-        card.setCustomerUser(user);
+        card.setCustomerUsers(Arrays.asList(user));
 
         userRepository.save(user);
     }

@@ -39,10 +39,10 @@ public class Card {
     @EqualsAndHashCode.Exclude
     private AppUser user;
 
-    @ManyToOne
+    @ManyToMany
     @JsonBackReference
     @EqualsAndHashCode.Exclude
-    private AppUser customerUser;
+    private List<AppUser> customerUsers;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -62,4 +62,5 @@ public class Card {
     public String getUserEmail() {
         return this.user.getEmail();
     }
+
 }

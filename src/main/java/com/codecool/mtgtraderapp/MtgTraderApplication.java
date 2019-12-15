@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 
@@ -21,10 +23,14 @@ public class MtgTraderApplication {
     @Autowired
     private UserRepository userRepository;
 
+    private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
     @Bean
     @Profile("production")
     public CommandLineRunner init() {
         return args -> {
+
+            //INITIALISE DATA
 
             Location metaGame = Location.builder()
                     .name("Meta Game")
@@ -83,8 +89,10 @@ public class MtgTraderApplication {
                     .build();
 
             AppUser mm = AppUser.builder()
-                    .name("Miklós Máté")
+                    .name("mm")
                     .email("miklos.mate.91@gmail.com")
+                    .password(passwordEncoder.encode("pw"))
+                    .roles(Arrays.asList("ROLE_ADMIN", "ROLE_USER"))
                     .cards(Arrays.asList(card1, card2, card3, card4, card5, card6, card7))
                     .build();
 

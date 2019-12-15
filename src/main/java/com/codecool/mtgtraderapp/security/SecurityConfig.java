@@ -1,7 +1,5 @@
 package com.codecool.mtgtraderapp.security;
 
-import com.codecool.mtgtraderapp.security.JwtTokenFilter;
-import com.codecool.mtgtraderapp.security.JwtTokenServices;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -45,11 +43,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
                 .authorizeRequests() // restrict access based on the config below:
-                .antMatchers("/auth/**").permitAll() // allowed by anyone
-                .antMatchers(HttpMethod.GET, "/vehicles/**").authenticated() // allowed only when signed in
-                .antMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN") // allowed if signed in with ADMIN role
-                .antMatchers(HttpMethod.GET, "/me").authenticated() // allowed only if signed in
-                .anyRequest().denyAll() // anything else is denied; this is a safeguard in case we left something out.
+                .antMatchers("/auth/signin").permitAll() // allowed by anyone
+                .antMatchers("/cards/").permitAll() // allowed by anyone
+                .antMatchers("/cards/{name}").permitAll() // allowed by anyone
+                .antMatchers(HttpMethod.POST, "/cards/save/**").authenticated() // allowed only if signed in
+                .antMatchers(HttpMethod.GET, "/cards/orders/**").authenticated() // allowed only if signed in
+//                .antMatchers(HttpMethod.DELETE, "/cards/**").hasRole("ADMIN") // allowed if signed in with ADMIN role
+//                .anyRequest().denyAll() // anything else is denied; this is a safeguard in case we left something out.
             .and()
             // Here we define our custom filter that uses the JWT tokens for authentication.
             .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);
